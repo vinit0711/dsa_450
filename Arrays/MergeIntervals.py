@@ -1,32 +1,30 @@
 
-input_intervals=[[1,3],[8,10],[15,18],[2,6]]
+input_intervals = [[1, 3], [8, 10], [15, 18], [2, 6]]
+
 
 class Merge:
 
-    def merge_interval(self,input_intervals):
-        x=[]
-        if len(input_intervals) == 0:
-            return x
-        input_intervals.sort()
-        print(input_intervals)
-        temp=input_intervals[0]
-        for i in input_intervals:
-                
-            if temp[1]>=i[0]:
-                temp[1]=max(temp[1],i[1])
-            
+    def merge_interval(self, intervals):
+        intervals.sort()
+        print("intervals sort==", intervals)
+        a = intervals[0]
+        result = []
+        for i in range(len(intervals)):
+            loop = intervals[i]
+            if(a[1] >= intervals[i][0]):
+                a[1] = max(a[1], intervals[i][1])
+                print("intervals[i]==", intervals[i])
+                print("a==", a)
             else:
-                x.append(temp)
-                temp=i
-                    
-            x.append(temp)     
-            
-        return x
+                result.append(a)
+                a = intervals[i]
+        result.append(a)
+        return result
 
 
 if __name__ == "__main__":
-    a=Merge()
+    a = Merge()
 
-    b=a.merge_interval(input_intervals)
+    b = a.merge_interval(input_intervals)
 
     print(b)
